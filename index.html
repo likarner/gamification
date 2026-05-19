@@ -83,11 +83,11 @@
     border-radius: 8px; padding: 0.75rem 1rem;
     font-size: 0.82rem; color: #222222;
     font-family: 'Courier New', monospace; line-height: 1.5;
-    max-height: 72px; overflow: hidden;
-    transition: max-height 0.3s ease;
+    max-height: 90px; overflow: hidden;
+    transition: max-height 0.4s ease;
     position: relative;
   }
-  .prompt-box.expanded { max-height: 600px; }
+  .prompt-box.expanded { max-height: 1000px; }
   .prompt-fade {
     position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
     background: linear-gradient(transparent, #e0e0e0);
@@ -167,48 +167,10 @@
 
       <div class="prompt-card">
         <span class="prompt-tag">Quiz</span>
-        <h3>Single-Choice-Quiz</h3>
-        <p>Erstellt mit Claude AI.</p>
+        <h3>Interaktives Quiz erstellen</h3>
+        <p>Erstellt ein spielbares Multiple-Choice-Quiz zu einem beliebigen Unterrichtsthema.</p>
         <div class="prompt-box-wrap">
-          <div class="prompt-box">Erstelle ein interaktives Single-Choice-Quiz als React-Artifact zum Thema [THEMA] mit folgenden Anforderungen:
-Fragen & Struktur
-	• 10 Fragen, aufgeteilt auf 5 Schwierigkeitslevel (je 2 Fragen pro Level)
-	• Die Fragen werden von Level zu Level schwieriger
-	• 4 Antwortmöglichkeiten pro Frage (A/B/C/D)
-Zeitlimit
-	• Level 1: 20s, Level 2: 18s, Level 3: 15s, Level 4: 12s, Level 5: 10s
-	• Zeitbalken, der sich farblich verändert (grün → gelb → rot)
-	• Bei Zeitablauf wird die Frage automatisch als falsch gewertet
-Punktesystem
-	• Richtige Antwort: 50 Basispunkte + bis zu 100 Bonuspunkte je nach Restzeit
-	• Falsche Antwort oder Zeitablauf: 0 Punkte
-	• Punktestand wird live während des Quiz angezeigt
-Feedback
-	• Nach jeder Antwort: sofortiges farbiges Feedback (grün = richtig, rot = falsch)
-	• Richtige Antwort wird immer aufgedeckt
-	• Fortschrittsanzeige als Punkte-Reihe unten (grün/rot/blau)
-Highscore
-	• Spieler gibt vor dem Start seinen Namen ein
-	• Highscore wird persistent mit window.storage gespeichert (Key: hs_[thema]_quiz)
-	• Top 5 werden gespeichert und angezeigt
-	• Aktueller Spieler wird in der Highscore-Liste mit (du) markiert
-	• Highscore erscheint auf der Startseite (falls vorhanden) und auf der Ergebnisseite
-Startseite
-	• Titel mit passendem Emoji, kurze Beschreibung (Anzahl Fragen, Level, Zeitlimit)
-	• Namenseingabe
-	• Highscore-Liste (nur wenn bereits Einträge vorhanden)
-Ergebnisseite
-	• Emoji je nach Ergebnis (🏆 / 😊 / 🙂 / 📚)
-	• Gesamtpunkte, Anzahl richtiger Antworten und Prozentsatz
-	• Scrollbare Übersicht aller Fragen mit ✅/❌ und erzielten Punkten
-	• Highscore-Liste
-	• Button „Nochmal spielen"
-Design
-	• Dunkelblaues Gradient-Hintergrund (#1a237e → #283593)
-	• Weiße Cards mit abgerundeten Ecken und Schatten
-	• Level-Farben: grün → hellgrün → gelb → orange → rot
-	• Level-Label mit Sternchen (⭐ bis ⭐⭐⭐⭐⭐)
-Sauberes, modernes UI, kein externes CSS-Framework</div>
+          <div class="prompt-box">Erstelle ein interaktives Quiz zum Thema [THEMA] für [SCHULSTUFE]. Das Quiz soll 10 Fragen mit je 4 Antwortmöglichkeiten enthalten, Punkte vergeben und am Ende ein Ergebnis anzeigen. Erstelle es als HTML-Artefakt.</div>
           <div class="prompt-fade"></div>
         </div>
         <div class="prompt-actions">
