@@ -220,10 +220,58 @@ Design
 
       <div class="prompt-card">
         <span class="prompt-tag">Lernspiel</span>
-        <h3>Vokabel-Lernspiel</h3>
-        <p>Generiert ein Karteikarten- oder Matching-Spiel für Vokabeln oder Begriffe.</p>
+        <h3>Jump-and-Run-Spiel</h3>
+        <p>Erstellt mit Gemini.</p>
         <div class="prompt-box-wrap">
-          <div class="prompt-box">Erstelle ein Vokabel-Lernspiel als HTML-Artefakt. Die Schüler sollen Begriffe den richtigen Definitionen zuordnen. Vokabeln: [LISTE EINFÜGEN]. Füge einen Timer und eine Punkteanzeige hinzu.</div>
+          <div class="prompt-box">Erstelle ein einteiliges HTML5-„Jump and Run“-Lernspiel unter Verwendung von Tailwind CSS und der nativen Canvas-API. Das Spiel heißt „[Name des Spiels]“.
+
+### 1. Allgemeine Architektur & Design
+- **Ein-Datei-Prinzip**: Der gesamte HTML-, responsive CSS- (über Tailwind) und JavaScript-Code muss in einer einzigen `.html`-Datei liegen.
+- **Visueller Stil**: Ein zum Thema passender, moderner Grafikstil im Dark Mode (z. B. Cyberpunk/Neon oder [Stil-Thema]) mit kontrastreichen, hochwertigen Farbverläufen (z. B. [Farbpalette]).
+- **Parallaxe-Hintergrund**: Mehrschichtiger, scrollender Hintergrund, der die Atmosphäre des Themas widerspiegelt (z. B. [Hintergrund-Szenario]).
+- **Steuerung**: Vollständig reaktiv. Springen mit der Pfeiltaste Oben, der Leertaste, der Taste „W“ oder durch Tippen/Berühren des Bildschirms auf Mobilgeräten.
+
+### 2. Spielfigur ([Bezeichnung der Spielfigur])
+- Ein im Pixel- oder Vektor-Style animierter Charakter, passend zum Thema gestaltet: [Beschreibung der Spielfigur, Aussehen und Kleidung].
+- Der Charakter soll beim Laufen ein animiertes Element besitzen (z. B. [wehendes/bewegendes Kleidungsstück oder Objekt]).
+- Die Figur hält oder führt ein themenbezogenes Objekt mit sich: [Objekt-Beschreibung].
+- Beim Abspringen und Landen werden kleine Partikeleffekte (Staub/Funken) ausgelöst.
+### 3. Hindernisse & Gegenstände (Gamification)
+- **Sammelobjekte ([Symbol für Sammelobjekt] [Name des Sammelobjekts])**: Schweben in der Luft.
+  - *Einsammeln*: Erhöht den Punktestand um einen bestimmten Wert und zählt für den nächsten Quiz-Trigger.
+  - *Bestrafung*: Wenn ein Sammelobjekt verpasst wird (links aus dem Bildschirm gleitet), verliert der Spieler 1 Leben, untermalt von visuellen Warnpartikeln.
+  - *Quiz-Trigger*: Sobald genau **2 Sammelobjekte** gesammelt wurden, pausiert das Spiel und eine Quizfrage öffnet sich.
+- **Gefahren ([Gefahr-Symbol 1] / [Gefahr-Symbol 2] [Namen der Gefahren])**: Hindernisse, die auf dem Boden auftauchen.
+  - *Gefahr 1*: Ein passend zum Thema gestaltetes Bodenhindernis (z. B. [Beschreibung von Gefahr 1] mit Animation).
+  - *Gefahr 2*: Ein weiteres alternatives Bodenhindernis (z. B. [Beschreibung von Gefahr 2]).
+  - *Kollision*: Das Berühren eines Hindernisses kostet 1 Leben, gewährt 1 Sekunde Unverwundbarkeit (Blinken der Figur) und erzeugt Aufprall-Partikel.
+### 4. Statusleiste (HUD) & Zustandsverwaltung
+- **Lebenssystem**: Der Spieler startet mit **4 Leben** (dargestellt als ❤️❤️❤️❤️, maximales Limit von 4 Leben).
+- **UI-Elemente**: Anzeige der aktuellen Leben, der aktuell gesammelten Objekte für den nächsten Quiz-Trigger (0 / 2), des Punktestands, des lokalen Highscores (gespeichert im `localStorage`) und des Fortschritts (z. B. „Frage [X] / [Gesamtanzahl]“).
+
+### 5. Synthesizer-Audio-Engine (Web Audio API)
+- Erstelle ein synthetisches Retro-8-Bit-Audiosystem unter Verwendung der Web Audio API des Browsers (keine externen Audiodateien laden!).
+- Features:
+  - Stummschalt-Button (🔊/🔇) im HUD.
+  - Eine fröhliche, treibende Hintergrundmusik (Bass-Loop), die während des aktiven Laufspiels im Hintergrund läuft (und während des Quiz pausiert).
+  - Soundeffekte für: Sprung, Einsammeln, Treffer/Schaden, richtige Antwort, falsche Antwort und Game Over.
+### 6. Interaktive Quiz-Engine
+- Das Quiz öffnet sich als Vollbild-Overlay und pausiert das Laufspiel.
+- Es besteht aus **[Anzahl, z. B. 20] Fragen** zum Thema „[Thema des Spiels]“, abgestimmt auf die Zielgruppe „[Zielgruppe]“.
+- **Antworten mischen**: Stelle sicher, dass die richtigen Antworten bei allen Fragen zufällig über die Optionen (A, B, C, D) verteilt sind – die richtige Antwort darf NICHT immer die erste Option sein.
+- **Timer**: Jede Frage hat einen 20-Sekunden-Countdown. Läuft die Zeit ab, gilt die Antwort als falsch.
+- **Heilung**: Eine richtige Antwort stellt **+1 Leben** wieder her (maximal 4). Erzeugt optisch ansprechende Heilungspartikel um die Spielfigur.
+- **Erklärung**: Zeige ein klares Feedback-Fenster mit detaillierten, leicht verständlichen Erklärungen zur richtigen Antwort nach dem Einloggen der Auswahl.
+
+### 7. Hauptschleife & Spielgeschwindigkeit
+- Alle Spielelemente (Spawnen, Geschwindigkeitsberechnung, Hintergrundbewegung) müssen über `requestAnimationFrame` absolut flüssig laufen.
+- Die Spielgeschwindigkeit erhöht sich nach jeder beantworteten Frage schrittweise (z.B. um 12 %), wodurch der Lauf immer rasanter und schwieriger wird.
+- Gewinnen: Überlebe und beantworte alle Fragen erfolgreich.
+- Game Over: Die Lebensanzeige sinkt auf 0.
+### 8. Fragenkatalog (Fragen & Erklärungen)
+Generiere [Anzahl, z. B. 20] einfache und verständliche Fragen auf Deutsch zum Thema „[Thema]“.
+Achte darauf, dass die Fragen im Schwierigkeitsgrad leicht ansteigen und die korrekten Antworten gleichmäßig auf die Optionen A, B, C und D verteilt sind.
+</div>
           <div class="prompt-fade"></div>
         </div>
         <div class="prompt-actions">
@@ -235,9 +283,51 @@ Design
       <div class="prompt-card">
         <span class="prompt-tag">Escape Room</span>
         <h3>Digitaler Escape Room</h3>
-        <p>Erstellt einen textbasierten Escape Room rund um ein Unterrichtsthema.</p>
+        <p>Erstellt einen textbasierten Escape Room mit Claude AI.</p>
         <div class="prompt-box-wrap">
-          <div class="prompt-box">Erstelle einen digitalen Escape Room zum Thema [THEMA] als HTML-Artefakt. Schüler müssen 3 Rätsel lösen, um zu entkommen. Die Rätsel sollen Wissen aus [FACH/THEMA] abfragen. Mit Fortschrittsanzeige und Zeitlimit.</div>
+          <div class="prompt-box">Erstelle einen interaktiven Escape Room als React-Artifact auf Deutsch für [Zielgruppe] zum Thema [Thema].
+
+Visuelles Design
+Der Escape Room soll optisch wie ein [Raumtyp, z.B. Serverraum / Labor / Raumstation / Burg] aussehen: dunkler Hintergrund ([Hintergrundfarbe, z.B. #050d1a]), animierte [Dekorationselemente, z.B. Server-Racks] mit blinkenden [Akzentdetails, z.B. LEDs] in verschiedenen Farben, [weitere Raumelemente, z.B. Deckenleuchten, Kabelkanäle, Bodenraster]. Klickbare Objekte sind durch einen pulsierenden [Farbe, z.B. grünen] Punkt und einen Leuchtring beim Hover klar erkennbar. Beim Anklicken vergrößert sich das Objekt mit [Farbe, z.B. blauem] Glow-Effekt, und ein Info-Panel mit Schließen-Button erscheint. Schriftart: [Schriftart, z.B. 'Courier New', monospace]. Farbpalette: [Farbschema, z.B. Blautöne, Cyan, Grün, dunkle Hintergründe].
+
+Spielstruktur
+
+Startbildschirm mit [passenden Dekoelementen zum Raumtyp], Spielbeschreibung, Raumübersicht und einem „▶ STARTEN"-Button. Der Countdown beginnt erst nach dem Klick.
+[Anzahl] Räume, aufbauend auf dem Thema [Thema]. Jeder Raum behandelt ein eigenes Teilthema, das sinnvoll aus dem Gesamtthema abgeleitet und aufbauend strukturiert wird.
+Jeder Raum enthält 4–5 klickbare Objekte (Emoji-Icons mit Label und pulsierendem Punkt), die beim Anklicken Lerninformationen in einem Info-Panel anzeigen. Die Objekte passen optisch zum [Raumtyp] und inhaltlich zum jeweiligen Teilthema. Diese Infos sind notwendig, um das Rätsel zu lösen.
+Countdown pro Raum: [X] Minuten. Der Balken wechselt die Farbe: grün → orange → rot. Bei Ablauf erscheint ein Timeout-Screen mit Retry-Option.
+Fortschrittsanzeige im Header zeigt alle Räume mit Status (offen / aktiv / abgeschlossen ✓).
+Siegesbildschirm nach erfolgreichem Abschluss aller Räume.
+
+
+Rätsel
+Jeder Raum enthält genau ein Rätsel. Inhalt, Begriffe, Fragen und Antworten werden passend zum jeweiligen Teilthema abgeleitet.
+Gehe so vor: Schlage vor dem Erstellen des Artifacts für jeden Raum eine geeignete Rätselart vor und warte auf Bestätigung – es sei denn, die Rätselart ist bereits vorgegeben (siehe unten). Mögliche Rätselarten sind z.B.:
+
+Zuordnungs-Quiz (Szenarien einem Begriff zuordnen)
+„Wer bin ich?" (Beschreibungen einem Begriff zuordnen, nacheinander)
+Codewort-Rätsel (Anfangsbuchstaben von Begriffen ergeben ein Codewort)
+Lückentext (fehlende Begriffe in Sätze eintragen)
+Richtig/Falsch-Aussagen (fehlerhafte Aussagen markieren)
+Interaktives Konfigurations- oder Berechnungsrätsel (Werte anpassen bis eine Bedingung erfüllt ist)
+[Rätselart] ← hier kannst du auch eine eigene Rätselart direkt vorgeben
+
+Vorgegebene Rätselarten pro Raum (leer lassen = Claude schlägt vor):
+
+Raum 1: [Rätselart]
+Raum 2: [Rätselart]
+Raum 3: [Rätselart]
+Raum 4: [Rätselart]
+
+
+Technische Anforderungen
+
+Reines React mit Hooks (useState, useEffect, useRef), keine externen Libraries.
+useCountdown-Hook: Countdown in Sekunden, pausiert wenn inaktiv, ruft onExpire auf.
+Blinkende [Dekoelement]-Komponente mit setInterval für realistischen [Raumtyp]-Look.
+Countdown-Balken mit CSS-Transition für flüssige Animation.
+Kein localStorage. Gesamter State in React-State.
+Alle Komponenten in einer einzigen Artifact-Datei.</div>
           <div class="prompt-fade"></div>
         </div>
         <div class="prompt-actions">
@@ -248,10 +338,22 @@ Design
 
       <div class="prompt-card">
         <span class="prompt-tag">Simulation</span>
-        <h3>Interaktive Simulation</h3>
-        <p>Lässt Schüler komplexe Zusammenhänge durch eine spielerische Simulation erleben.</p>
+        <h3>Vokabel-Trainer</h3>
+        <p>Erstellt eine Vokabeljagd, Anwendung von Gemini.</p>
         <div class="prompt-box-wrap">
-          <div class="prompt-box">Erstelle eine interaktive Simulation zum Thema [THEMA] als HTML-Artefakt. Schüler sollen durch eigene Entscheidungen die Auswirkungen auf [VARIABLE] erleben. Visualisiere die Ergebnisse in Echtzeit.</div>
+          <div class="prompt-box">Erstelle ein webbasiertes Single-Page-Spiel im Stile eines 'River Runners'. Die technische Basis soll eine einzige HTML-Datei sein, die HTML, Tailwind CSS für das moderne Styling und JavaScript (direkt im <script>-Tag) kombiniert.
+Thematische Anforderungen:
+	• Das Spiel soll als Lernwerkzeug für [DEIN THEMA HIER EINTRAGEN, z.B. Medizinische Fachbegriffe] dienen.
+	• Erstelle ein Glossar-Array mit mindestens 30 Einträgen, bestehend aus Schlüsselbegriffen und deren korrekten Übersetzungen/Definitionen.
+	• Das Spielprinzip: Der Spieler steuert ein Boot auf einem Fluss. Von oben fallen Begriffe (als 'Fisch' dargestellt). Wenn der Begriff die korrekte Übersetzung zum aktuell angezeigten Zielwort am oberen Bildschirmrand ist, muss er gesammelt werden (+20 Punkte). Falsche Begriffe oder Hindernisse (Steine) müssen gemieden werden.
+Technische Anforderungen:
+	• Grafik: Verwende das HTML5 Canvas API für alle grafischen Elemente (Boot, Fische, Steine). Verzichte auf externe Bilder, zeichne die Assets prozedural mit ctx-Methoden.
+	• Steuerung: Implementiere eine flüssige Steuerung für Desktop (Pfeiltasten/Maus) und Mobile (Touch-Button-Overlay).
+	• Highscore-System: Nutze localStorage zur dauerhaften Speicherung der Top-5-Ergebnisse. Die Liste muss beim Neuladen der Seite sofort korrekt aus dem Speicher gelesen und gerendert werden.
+	• Audio: Implementiere ein prozedurales Audio-System mittels Web Audio API, das Hintergrundmusik und Soundeffekte ('correct', 'wrong', 'crash') ohne externe Audiodateien erzeugt.
+	• UI/UX: Nutze Tailwind CSS für ein dunkles, modernes Design (Slate-Palette). Inkludiere ein 'How to Play'-Modal, eine dynamische Punkteanzeige und eine Liste der letzten Fehlversuche oder den aktuellen Punktestand.
+	• Stabilität: Achte auf eine robuste Spielschleife (requestAnimationFrame), bei der alle Kollisionen und Zustandsänderungen (score, lives, speedFactor) sauber verwaltet werden.
+Bitte stelle sicher, dass der Code modular, sauber kommentiert und in einer einzigen Datei vollständig lauffähig ist.</div>
           <div class="prompt-fade"></div>
         </div>
         <div class="prompt-actions">
