@@ -9,7 +9,7 @@
 
   :root {
     --bg: #2b2b2b;
-    --white: #e8e8e8;
+    --white: #c8c8c8;
     --text: #f0f0f0;
     --muted: #aaaaaa;
     --accent: #9c2b3d;
@@ -18,13 +18,7 @@
     --radius: 12px;
   }
 
-  body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
   a { color: inherit; text-decoration: none; }
 
   /* NAV */
@@ -37,53 +31,22 @@
     display: flex; align-items: center; justify-content: space-between;
     height: 60px;
   }
-  .nav-logo { font-weight: 700; font-size: 1rem; letter-spacing: -0.3px; }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1rem; }
+  .nav-logo img { height: 32px; width: auto; }
   .nav-links { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--muted); }
   .nav-links a:hover { color: var(--text); }
 
   /* HERO */
-  .hero {
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    max-width: 720px;
-    margin: 0 auto;
-  }
+  .hero { text-align: center; padding: 6rem 2rem 4rem; max-width: 720px; margin: 0 auto; }
   .hero-badge {
-    display: inline-block;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.3rem 0.9rem;
-    border-radius: 99px;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.3px;
+    display: inline-block; background: var(--accent-light); color: var(--accent);
+    font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.9rem;
+    border-radius: 99px; margin-bottom: 1.5rem; letter-spacing: 0.3px;
   }
-  .hero h1 {
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    margin-bottom: 1rem;
-  }
-  .hero p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 540px;
-    margin: 0 auto 2rem;
-  }
-  .hero-cta {
-    display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-  }
-  .btn {
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: opacity 0.15s;
-  }
+  .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 1rem; }
+  .hero p { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin: 0 auto 2rem; }
+  .hero-cta { display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn { padding: 0.7rem 1.5rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.15s; }
   .btn:hover { opacity: 0.85; }
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
@@ -92,144 +55,107 @@
   section { padding: 5rem 2rem; }
   .section-inner { max-width: 1000px; margin: 0 auto; }
   .section-header { margin-bottom: 2.5rem; }
-  .section-label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-  .section-header h2 {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
+  .section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 0.5rem; }
+  .section-header h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.3px; }
   .section-header p { color: var(--muted); margin-top: 0.5rem; font-size: 0.98rem; }
 
   /* PROMPT CARDS */
-  .prompts-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
+  .prompts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
   .prompt-card {
-    background: #c8c8c8;
-    border: 1px solid #b8b8b8;
-    border-radius: var(--radius);
-    padding: 1.5rem;
+    background: var(--white); border: 1px solid #b8b8b8;
+    border-radius: var(--radius); padding: 1.5rem;
     display: flex; flex-direction: column; gap: 0.75rem;
-    transition: box-shadow 0.2s;
-    color: #1a1a1a;
+    transition: box-shadow 0.2s; color: #1a1a1a;
   }
   .prompt-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
-  .prompt-card h3 { color: #1a1a1a; }
-  .prompt-card p { color: #555555; }
+  .prompt-card h3 { color: #1a1a1a; font-size: 1rem; font-weight: 700; }
+  .prompt-card p { font-size: 0.88rem; color: #555555; }
   .prompt-tag {
-    display: inline-block;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 99px;
-    width: fit-content;
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem;
+    border-radius: 99px; width: fit-content;
   }
-  .prompt-card h3 { font-size: 1rem; font-weight: 700; }
-  .prompt-card p { font-size: 0.88rem; color: var(--muted); flex: 1; }
+
+  /* PROMPT BOX WITH EXPAND */
+  .prompt-box-wrap { position: relative; }
   .prompt-box {
-    background: #1a1a1a;
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 0.82rem;
-    color: #cccccc;
-    font-family: 'Courier New', monospace;
-    line-height: 1.5;
+    background: #e0e0e0; border: 1px solid #b8b8b8;
+    border-radius: 8px; padding: 0.75rem 1rem;
+    font-size: 0.82rem; color: #222222;
+    font-family: 'Courier New', monospace; line-height: 1.5;
+    max-height: 72px; overflow: hidden;
+    transition: max-height 0.3s ease;
+    position: relative;
   }
+  .prompt-box.expanded { max-height: 600px; }
+  .prompt-fade {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 32px;
+    background: linear-gradient(transparent, #e0e0e0);
+    border-radius: 0 0 8px 8px;
+    pointer-events: none; transition: opacity 0.3s;
+  }
+  .prompt-fade.hidden { opacity: 0; }
+  .expand-btn {
+    background: none; border: none; color: var(--accent);
+    font-size: 0.78rem; font-weight: 600; cursor: pointer;
+    padding: 0; margin-top: -0.25rem; text-align: left;
+  }
+  .expand-btn:hover { text-decoration: underline; }
+
+  .prompt-actions { display: flex; justify-content: space-between; align-items: center; }
   .copy-btn {
-    align-self: flex-end;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.4rem 0.9rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.15s;
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 6px; padding: 0.4rem 0.9rem;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s;
   }
   .copy-btn:hover { opacity: 0.85; }
   .copy-btn.copied { background: #16a34a; }
 
-  /* ARTIFACT CARDS */
-  .artifacts-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-  .artifact-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
+  /* USECASE CARDS */
+  .usecases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .usecase-card {
+    background: #c8c8c8; border: 1px solid #b8b8b8;
+    border-radius: var(--radius); overflow: hidden;
     transition: box-shadow 0.2s, transform 0.2s;
     display: flex; flex-direction: column;
   }
-  .artifact-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .artifact-thumb { display: none; }
-  .artifact-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-  .artifact-body h3 { font-size: 1rem; font-weight: 700; }
-  .artifact-body p { font-size: 0.86rem; color: var(--muted); flex: 1; }
-  .artifact-link {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent);
-  }
-  .artifact-link:hover { text-decoration: underline; }
+  .usecase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.18); transform: translateY(-2px); }
+  .usecase-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; color: #222222; }
+  .usecase-body h3 { color: #222222; font-size: 1rem; font-weight: 700; }
+  .usecase-body p { font-size: 0.86rem; color: #444444; flex: 1; }
+  .usecase-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--accent); }
+  .usecase-link:hover { text-decoration: underline; }
 
-  /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
 
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
+  footer { text-align: center; padding: 2.5rem 2rem; font-size: 0.85rem; color: var(--muted); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo" style="display:flex; align-items:center; gap:0.75rem;">
-    <img src="HAKlogo.png" alt="HAK Steyr" style="height:32px; width:auto;" />
+  <div class="nav-logo">
+    <img src="HAKlog.png" alt="HAK Steyr" />
     Gamification &amp; KI
   </div>
   <div class="nav-links">
     <a href="#prompts">Prompts</a>
-    <a href="#artefakte">UseCases</a>
+    <a href="#usecases">UseCases</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">KI-gestützte Unterrichtstools</div>
   <h1>Gamification im Unterricht –<br/>mit KI erstellt</h1>
-  <p>KI-Prompts und UseCases für Gamificationtools: Fertige Prompts und interaktive UseCases für Abwechslung im Unterricht</p>
+  <p>KI-Prompts und UseCases für Gamificationtools: Fertige Prompts und interaktive UseCases für spielerisches Lernen im Klassenzimmer.</p>
   <div class="hero-cta">
     <a href="#prompts" class="btn btn-primary">Prompts entdecken</a>
-    <a href="#artefakte" class="btn btn-outline">UseCases ansehen</a>
+    <a href="#usecases" class="btn btn-outline">UseCases ansehen</a>
   </div>
 </div>
 
 <hr class="divider" />
 
-<!-- PROMPTS -->
 <section id="prompts">
   <div class="section-inner">
     <div class="section-header">
@@ -243,32 +169,56 @@
         <span class="prompt-tag">Quiz</span>
         <h3>Interaktives Quiz erstellen</h3>
         <p>Erstellt ein spielbares Multiple-Choice-Quiz zu einem beliebigen Unterrichtsthema.</p>
-        <div class="prompt-box">Erstelle ein interaktives Quiz zum Thema [THEMA] für [SCHULSTUFE]. Das Quiz soll 10 Fragen mit je 4 Antwortmöglichkeiten enthalten, Punkte vergeben und am Ende ein Ergebnis anzeigen. Erstelle es als HTML-Artefakt.</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        <div class="prompt-box-wrap">
+          <div class="prompt-box">Erstelle ein interaktives Quiz zum Thema [THEMA] für [SCHULSTUFE]. Das Quiz soll 10 Fragen mit je 4 Antwortmöglichkeiten enthalten, Punkte vergeben und am Ende ein Ergebnis anzeigen. Erstelle es als HTML-Artefakt.</div>
+          <div class="prompt-fade"></div>
+        </div>
+        <div class="prompt-actions">
+          <button class="expand-btn" onclick="togglePrompt(this)">Mehr anzeigen</button>
+          <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        </div>
       </div>
 
       <div class="prompt-card">
         <span class="prompt-tag">Lernspiel</span>
         <h3>Vokabel-Lernspiel</h3>
         <p>Generiert ein Karteikarten- oder Matching-Spiel für Vokabeln oder Begriffe.</p>
-        <div class="prompt-box">Erstelle ein Vokabel-Lernspiel als HTML-Artefakt. Die Schüler sollen Begriffe den richtigen Definitionen zuordnen. Vokabeln: [LISTE EINFÜGEN]. Füge einen Timer und eine Punkteanzeige hinzu.</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        <div class="prompt-box-wrap">
+          <div class="prompt-box">Erstelle ein Vokabel-Lernspiel als HTML-Artefakt. Die Schüler sollen Begriffe den richtigen Definitionen zuordnen. Vokabeln: [LISTE EINFÜGEN]. Füge einen Timer und eine Punkteanzeige hinzu.</div>
+          <div class="prompt-fade"></div>
+        </div>
+        <div class="prompt-actions">
+          <button class="expand-btn" onclick="togglePrompt(this)">Mehr anzeigen</button>
+          <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        </div>
       </div>
 
       <div class="prompt-card">
         <span class="prompt-tag">Escape Room</span>
         <h3>Digitaler Escape Room</h3>
         <p>Erstellt einen textbasierten Escape Room rund um ein Unterrichtsthema.</p>
-        <div class="prompt-box">Erstelle einen digitalen Escape Room zum Thema [THEMA] als HTML-Artefakt. Schüler müssen 3 Rätsel lösen, um zu entkommen. Die Rätsel sollen Wissen aus [FACH/THEMA] abfragen. Mit Fortschrittsanzeige und Zeitlimit.</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        <div class="prompt-box-wrap">
+          <div class="prompt-box">Erstelle einen digitalen Escape Room zum Thema [THEMA] als HTML-Artefakt. Schüler müssen 3 Rätsel lösen, um zu entkommen. Die Rätsel sollen Wissen aus [FACH/THEMA] abfragen. Mit Fortschrittsanzeige und Zeitlimit.</div>
+          <div class="prompt-fade"></div>
+        </div>
+        <div class="prompt-actions">
+          <button class="expand-btn" onclick="togglePrompt(this)">Mehr anzeigen</button>
+          <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        </div>
       </div>
 
       <div class="prompt-card">
         <span class="prompt-tag">Simulation</span>
         <h3>Interaktive Simulation</h3>
         <p>Lässt Schüler komplexe Zusammenhänge durch eine spielerische Simulation erleben.</p>
-        <div class="prompt-box">Erstelle eine interaktive Simulation zum Thema [THEMA] als HTML-Artefakt. Schüler sollen durch eigene Entscheidungen die Auswirkungen auf [VARIABLE] erleben. Visualisiere die Ergebnisse in Echtzeit.</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        <div class="prompt-box-wrap">
+          <div class="prompt-box">Erstelle eine interaktive Simulation zum Thema [THEMA] als HTML-Artefakt. Schüler sollen durch eigene Entscheidungen die Auswirkungen auf [VARIABLE] erleben. Visualisiere die Ergebnisse in Echtzeit.</div>
+          <div class="prompt-fade"></div>
+        </div>
+        <div class="prompt-actions">
+          <button class="expand-btn" onclick="togglePrompt(this)">Mehr anzeigen</button>
+          <button class="copy-btn" onclick="copyPrompt(this)">Kopieren</button>
+        </div>
       </div>
 
     </div>
@@ -277,49 +227,44 @@
 
 <hr class="divider" />
 
-<!-- ARTEFAKTE -->
-<section id="artefakte">
+<section id="usecases">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-label">UseCases</div>
       <h2>Fertige Gamification-Tools</h2>
-      <p>Mit obigen Prompts erstellte, sofort einsetzbare Usecases für den Unterricht.</p>
+      <p>Mit obigen Prompts erstellte, sofort einsetzbare UseCases für den Unterricht.</p>
     </div>
-    <div class="artifacts-grid">
+    <div class="usecases-grid">
 
-      <div class="artifact-card">
-        <div class="artifact-thumb">🧩</div>
-        <div class="artifact-body">
+      <div class="usecase-card">
+        <div class="usecase-body">
           <h3>Platzhalter: Quiz Biologie</h3>
           <p>Ein interaktives 10-Fragen-Quiz zur Zellbiologie für die 8. Schulstufe – mit Punktesystem und Zeitlimit.</p>
-          <a href="#" class="artifact-link">Artefakt öffnen →</a>
+          <a href="#" class="usecase-link">UseCase öffnen →</a>
         </div>
       </div>
 
-      <div class="artifact-card">
-        <div class="artifact-thumb">🃏</div>
-        <div class="artifact-body">
+      <div class="usecase-card">
+        <div class="usecase-body">
           <h3>Platzhalter: Vokabel-Matching</h3>
           <p>Englisch-Vokabeln der Lektion 5 als Drag-and-Drop-Spiel – ideal als Einstieg oder Wiederholung.</p>
-          <a href="#" class="artifact-link">Artefakt öffnen →</a>
+          <a href="#" class="usecase-link">UseCase öffnen →</a>
         </div>
       </div>
 
-      <div class="artifact-card">
-        <div class="artifact-thumb">🔐</div>
-        <div class="artifact-body">
+      <div class="usecase-card">
+        <div class="usecase-body">
           <h3>Platzhalter: Escape Room Geschichte</h3>
           <p>Digitaler Escape Room zur Französischen Revolution – 3 Rätsel, 15 Minuten, vollständig spielbar.</p>
-          <a href="#" class="artifact-link">Artefakt öffnen →</a>
+          <a href="#" class="usecase-link">UseCase öffnen →</a>
         </div>
       </div>
 
-      <div class="artifact-card">
-        <div class="artifact-thumb">📊</div>
-        <div class="artifact-body">
+      <div class="usecase-card">
+        <div class="usecase-body">
           <h3>Platzhalter: Klimasimulation</h3>
           <p>Interaktive Simulation: Schüler steuern CO₂-Emissionen und sehen die Auswirkungen auf die Erderwärmung.</p>
-          <a href="#" class="artifact-link">Artefakt öffnen →</a>
+          <a href="#" class="usecase-link">UseCase öffnen →</a>
         </div>
       </div>
 
@@ -327,25 +272,29 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>Projektseite im Zuge von Embracing Technology · Lisa Karner · HAK Steyr</p>
 </footer>
 
 <script>
+  function togglePrompt(btn) {
+    const wrap = btn.closest('.prompt-card').querySelector('.prompt-box-wrap');
+    const box = wrap.querySelector('.prompt-box');
+    const fade = wrap.querySelector('.prompt-fade');
+    const expanded = box.classList.toggle('expanded');
+    fade.classList.toggle('hidden', expanded);
+    btn.textContent = expanded ? 'Weniger anzeigen' : 'Mehr anzeigen';
+  }
+
   function copyPrompt(btn) {
-    const box = btn.previousElementSibling;
+    const box = btn.closest('.prompt-card').querySelector('.prompt-box');
     navigator.clipboard.writeText(box.innerText).then(() => {
-      btn.textContent = '✓ Kopiert!';
+      btn.textContent = 'Kopiert!';
       btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Kopieren';
-        btn.classList.remove('copied');
-      }, 2000);
+      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
     });
   }
 
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -353,6 +302,5 @@
     });
   });
 </script>
-
 </body>
 </html>
